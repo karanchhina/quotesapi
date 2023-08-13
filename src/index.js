@@ -1,9 +1,3 @@
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const cors = require('cors');
-// const helmet = require('helmet');
-// const morgan = require('morgan');
-
 import 'dotenv/config'
 import { kv } from '@vercel/kv';
 import express from 'express'
@@ -13,8 +7,8 @@ import morgan from 'morgan';
 import axios from 'axios';
 // import { expressjwt, ExpressJwtRequest } from "express-jwt";
 // import JwksRsa from 'jwks-rsa';
-import { auth, requiredScopes } from 'express-oauth2-jwt-bearer';
 // import jwtAuthz from 'express-jwt-authz';
+import { auth, requiredScopes } from 'express-oauth2-jwt-bearer';
 
 
 // require('dotenv').config()
@@ -80,6 +74,6 @@ app.get('/premium', checkJwt, requiredScopes(['read:onequote', 'read:multiplequo
 
 
 
-app.listen(3001, () => {
-    console.log('listening on port 3001');
+app.listen(process.env.PORT || 3001, () => {
+    console.log(`listening on port ${process.env.PORT || 3001}`);
 });

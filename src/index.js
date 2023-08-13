@@ -9,7 +9,7 @@ import axios from 'axios';
 // import JwksRsa from 'jwks-rsa';
 // import jwtAuthz from 'express-jwt-authz';
 import { auth, requiredScopes } from 'express-oauth2-jwt-bearer';
-
+import html from './html.js';
 
 // require('dotenv').config()
 // const kv = require('@vercel/kv');
@@ -51,9 +51,8 @@ GET /basic => return one random quote
 GET /premium => return five random quotes
 */
 
-
 app.get('/', async (req, res) => {
-    res.json({ success: true })
+    res.send(html)
 })
 
 app.get('/basic', checkJwt, requiredScopes('read:onequote'), async (req, res) => {
